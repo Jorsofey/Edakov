@@ -7,59 +7,74 @@ class settingsPage extends StatefulWidget {
   @override
   _settingsPageState createState() => _settingsPageState();
 }
+bool click = true;
 
 class _settingsPageState extends State<settingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color.fromRGBO(65, 59, 74, 1),
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        iconTheme: IconThemeData(color: Colors.black),
+        backgroundColor: Color.fromRGBO(65, 59, 74, 1),
+        toolbarHeight: 150,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Настройки', style: TextStyle(fontSize: 28, color: Colors.black),)   //заглавление страницы
+            Column(
+              children: [
+                Icon(Icons.account_circle,
+                  color: Colors.grey,
+                  size: 100,),
+                Row(
+                  children: [
+                    TextButton(onPressed: () {},
+                        child: Text('* Имя пользователя', style: TextStyle(color: Colors.white, fontSize: 20),))
+                  ],
+                ),
+              ]
+            ),
+            Column(
+              children: [
+                IconButton(onPressed: () {
+                    setState(() {
+                    click = !click;
+                    });
+                    },
+                      icon: Icon((click == false) ? Icons.wb_sunny : Icons.dark_mode,
+                        color: Colors.white,
+                        size: 35,
+                      ),
+                    ),
+              ],
+            )
           ],
         ),
       ),
       body: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.values[5],
-            children: [
-              Row(
-                children: [
-                  TextButton(onPressed: () {},    //настройки приватности
-                      child: Text('Приватность', style: TextStyle(fontSize: 20, color: Colors.black),)
-                  )
-                ],
-              ),
-              Row(
-                children: [
-                  TextButton(onPressed: () {},    //настройки уведомлений
-                      child: Text('Уведомления', style: TextStyle(fontSize: 20, color: Colors.black),))
-                ],
-              ),
-              Row(
-                children: [
-                  TextButton(onPressed: () {},    //настройки темы приложения
-                      child: Text('Тема приложения', style: TextStyle(fontSize: 20, color: Colors.black),))
-                ],
-              ),
-              Row(
-                children: [
-                  TextButton(onPressed: () {    //настройки аккаунта пользователя, если он есть, есле нет, то переадр. на окно входа в аккаунт
-                    Navigator.pushNamed(context, '/accset');
-                  },
-                      child: Text('Настройки аккаунта', style: TextStyle(fontSize: 20, color: Colors.blue),))
-                ],
-              )
-            ],
-          )
-        ],
-      )
-    );
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                      color: Color.fromRGBO(196, 196, 196, 1),
+                      border: Border.all(
+                          color: Colors.black
+                      ),
+                      borderRadius: BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15) )
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Сохранённые', style: TextStyle(color: Colors.black, fontSize: 20))
+                    ],
+                  ),
+                )
+              ],
+            )
+          ],
+        ),
+      );
   }
 }
